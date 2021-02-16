@@ -11,9 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+// 無効に
+
+// Controller ( MicropostsController@index ) を経由してwelcomeを表示するように
+Route::get('/', 'MicropostsController@index');
+
+
+
 
 // User登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
@@ -28,4 +35,9 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 // 認証付きRouting
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+
+    // 追加
+    Route::resource('microposts', 'MicropostsController', ['only' => ['store', 'destroy']]);
 });
+
+
