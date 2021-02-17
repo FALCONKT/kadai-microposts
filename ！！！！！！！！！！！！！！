@@ -1,0 +1,105 @@
+！！！！！！！！！！！！！！
+Laravel Project に移動してから
+
+PHP　Server起動
+php artisan serve --host=$IP --port=$PORT
+
+PHPtinkerを起動
+php artisan tinker 
+
+
+cd 〇〇
+
+・MySQL状態確認　起動
+$ sudo service mysql status✖　5.5
+
+
+$
+sudo service mysql start
+ 
+
+sudo mysql -u root
+
+mysql>
+
+show databases;
+
+use tasklist;
+
+use microposts;
+
+show tables;
+
+describe users;
+describe tasks;
+
+describe user_follow; 
+describe users;
+
+describe microposts;
+
+describe favorites;
+
+
+select * from users;     
+select * from tasks;
+microposts
+
+select * from user_follow;
+select * from favorites;
+ 
+
+mysql> drop table users;
+mysql> drop table tasks;
+
+
+・Server　起動
+php artisan serve --host=$IP --port=$PORT
+
+・PHP LaravelMode 起動
+php artisan tinker 
+
+
+>>> $user->tasks
+PHP Error:  Class 'App/Micropost' not found in /home/ec2-user/environment/tasklist/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasRelationships.php on line 653
+
+
+
+
+ec2-user:~/environment/tasklist_f_logi (main) $ php artisan route:list
++--------+-----------+-------------------+---------------+-------------------------------------------------------------------+--------------+
+| Domain | Method    | URI               | Name          | Action                                                            | Middleware   |
++--------+-----------+-------------------+---------------+-------------------------------------------------------------------+--------------+
+|        | GET|HEAD  | /                 |               | App\Http\Controllers\TasksController@index                        | web          |
+|        | GET|HEAD  | api/user          |               | Closure                                                           | api,auth:api |
+|        | GET|HEAD  | index             |               | App\Http\Controllers\TasksController@index                        | web          |
+|        | GET|HEAD  | login             | login         | App\Http\Controllers\Auth\LoginController@showLoginForm           | web,guest    |
+|        | POST      | login             | login.post    | App\Http\Controllers\Auth\LoginController@login                   | web,guest    |
+|        | GET|HEAD  | logout            | logout.get    | App\Http\Controllers\Auth\LoginController@logout                  | web          |
+|        | GET|HEAD  | signup            | signup.get    | App\Http\Controllers\Auth\RegisterController@showRegistrationForm | web,guest    |
+|        | POST      | signup            | signup.post   | App\Http\Controllers\Auth\RegisterController@register             | web,guest    |
+|        | GET|HEAD  | tasks             | tasks.index   | App\Http\Controllers\TasksController@index                        | web          |
+|        | POST      | tasks             | tasks.store   | App\Http\Controllers\TasksController@store                        | web          |
+|        | GET|HEAD  | tasks/create      | tasks.create  | App\Http\Controllers\TasksController@create                       | web          |
+|        | GET|HEAD  | tasks/{task}      | tasks.show    | App\Http\Controllers\TasksController@show                         | web          |
+|        | PUT|PATCH | tasks/{task}      | tasks.update  | App\Http\Controllers\TasksController@update                       | web          |
+|        | DELETE    | tasks/{task}      | tasks.destroy | App\Http\Controllers\TasksController@destroy                      | web          |
+|        | GET|HEAD  | tasks/{task}/edit | tasks.edit    | App\Http\Controllers\TasksController@edit                         | web          |
++--------+-----------+-------------------+---------------+-------------------------------------------------------------------+--------------+
+
+php artisan migrate:fresh
+
+
+ postgres://lkkqdriysupkij:6968acb05ea4f8bcf7c17dd3b82ef496762bcb2d72ff50d328f3a62bb73c6997@ec2-50-19-171-158.compute-1.amazonaws.com:5432/d71eo02o1h6ssq
+
+DATABASE_URL: postgres://ユーザ名:パスワード@ホスト名:5432/データベース名
+
+ $ heroku config:set DB_CONNECTION=pgsql DB_USERNAME=ユーザ名 DB_PASSWORD=パスワード DB_HOST=ホスト名 DB_DATABASE=データベース名
+
+ postgres://:@:5432/
+
+$ heroku config:set DB_CONNECTION=pgsql DB_USERNAME=ユーザ名 DB_PASSWORD=パスワード DB_HOST=ホスト名 DB_DATABASE=データベース名
+
+$ heroku config:set DB_CONNECTION=pgsql DB_USERNAME=lkkqdriysupkij DB_PASSWORD=6968acb05ea4f8bcf7c17dd3b82ef496762bcb2d72ff50d328f3a62bb73c6997 DB_HOST=ec2-50-19-171-158.compute-1.amazonaws.com DB_DATABASE=d71eo02o1h6ssq
+
+heroku run php artisan migrate:fresh
