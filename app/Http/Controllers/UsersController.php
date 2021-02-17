@@ -49,4 +49,53 @@ class UsersController extends Controller
         ]);
     }
     
+    
+    /**
+     * ユーザのフォロー一覧ページを表示するアクション。
+     *
+     * @param  $id  ユーザのid
+     * @return \Illuminate\Http\Response
+     */
+    public function followings($id)
+    {
+        // idの値でUserを検索して取得
+        $user = User::findOrFail($id);
+
+        // 関係するModelの件数をLoad
+        $user->loadRelationshipCounts();
+
+        // UserのFollowー一覧を取得
+        $followings = $user->followings()->paginate(10);
+
+        // Follow一覧Viewでそれらを表示
+        return view('users.followings', [
+            'user' => $user,
+            'users' => $followings,
+        ]);
+    }
+
+    /**
+     * ユーザのフォロワー一覧ページを表示するアクション。
+     *
+     * @param  $id  ユーザのid
+     * @return \Illuminate\Http\Response
+     */
+    public function followers($id)
+    {
+        // idの値でUserを検索して取得
+        $user = User::findOrFail($id);
+
+        // 関係するModelの件数をLoad
+        $user->loadRelationshipCounts();
+
+        // USerのFollower一覧を取得
+        $followers = $user->followers()->paginate(10);
+
+        // Followerー一覧Viewでそれらを表示
+        return view('users.followers', [
+            'user' => $user,
+            'users' => $followers,
+        ]);
+    }
+    
 }
