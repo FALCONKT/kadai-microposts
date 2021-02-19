@@ -16,4 +16,16 @@ class Micropost extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+
+    // 多　対　多 の関係強化   
+    // userの情報をつなぐ
+    // User　がお気に入り されている　つぶやき
+    public function favorite_users(){
+        //UserClassの中の　中間Table名　の中の　micropost_id　と　user_id　を返す
+        // 更に　その時間を保存
+        return $this->belongsToMany(User::class,'favorites','micropost_id','user_id')->withTimestamps();
+    }
+
+    
 }

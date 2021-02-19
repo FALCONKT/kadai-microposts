@@ -20,6 +20,7 @@ class MicropostsController extends Controller
             // →microposts()　→　feed_microposts()　へ変更
             $microposts = $user->feed_microposts()->orderBy('created_at', 'desc')->paginate(10);
 
+
             $data = [
                 'user' => $user,
                 'microposts' => $microposts,

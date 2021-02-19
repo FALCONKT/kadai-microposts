@@ -9,7 +9,7 @@
         <div class="col-sm-8">
             {{-- タブ --}}
             @include('users.navtabs')
-            {{-- ユーザ一覧 --}}
+            {{-- ユーザ一覧 followしているUser　が記載されている--}} 
             @include('users.users')
         </div>
     </div>

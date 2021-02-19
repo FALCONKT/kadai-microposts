@@ -11,19 +11,20 @@
   
         </aside>
   
-  
         <div class="col-sm-8">
          {{-- タブ  共通化--}}
             @include('users.navtabs')       
             
             @if (Auth::id() == $user->id)
-
+                <!--LogInしているUserのみ-->
                 {{-- 投稿フォーム --}}
                 @include('microposts.form')
 
             @endif
+                <!--LogInしているUserでない場合-->
             {{-- 投稿一覧 --}}
             @include('microposts.microposts')
+
         </div>
 
     </div>
